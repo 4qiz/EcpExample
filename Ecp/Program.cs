@@ -12,7 +12,6 @@ namespace Ecp
             string signaturePath = "signature.sig"; // path to signature
             string documentPath = "document.txt"; // path to document
 
-            CreatePfx(certificatePath, certificatePassword);
             SignDocument(certificatePath, certificatePassword, documentPath, signaturePath);
             bool isVerified = VerifySignature(certificatePath, certificatePassword, documentPath, signaturePath);
             Console.WriteLine($"Signature verification result: {isVerified}");
@@ -32,6 +31,7 @@ namespace Ecp
 
         public static void SignDocument(string certificatePath, string certificatePassword, string documentPath, string signaturePath)
         {
+            CreatePfx(certificatePath, certificatePassword);
 
             // Load the certificate
             var certificate = new X509Certificate2(certificatePath, certificatePassword);
