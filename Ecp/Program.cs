@@ -20,7 +20,7 @@ namespace Ecp
 
         public static void CreatePfx(string certificatePath, string certificatePassword)
         {
-            var rsa = RSA.Create(2048);
+            using var rsa = RSA.Create(2048);
             var request = new CertificateRequest("cn=Example", rsa, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
 
             var cert = request.CreateSelfSigned(DateTimeOffset.Now, DateTimeOffset.Now.AddYears(1));
